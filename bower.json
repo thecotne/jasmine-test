@@ -1,0 +1,22 @@
+{
+  "name": "jasmine-test",
+  "main": "dist/index.bundle.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/thecotne/jasmine-test",
+  "authors": [
+    "cotne nazarashvili <cotne.nazarashvili@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec",
+    "dist/spec.bundle.js",
+    "src",
+    "gulpfile.js",
+    "jasmine.html",
+    "package.json"
+  ],
+  "dependencies": {}
+}
