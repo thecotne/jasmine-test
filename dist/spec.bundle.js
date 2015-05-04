@@ -56,23 +56,41 @@
 	Object.defineProperty(exports, '__esModule', {
 		value: true
 	});
+
+	var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } };
+
+	/**
+	 * Email Validation
+	 * @param  {String} email
+	 * @return {Boolean} True if email is valid
+	 */
 	exports.validation = validation;
 
 	function validation(email) {
-		if (email.indexOf(' ') === -1) {
-			if (email.indexOf('@') > -1) {
-				var pieces = email.split('@');
-				if (pieces.length === 2) {
-					if (pieces[0].length > 0) {
-						if (pieces[1].indexOf('.') > -1) {
-							return true;
-						}
-					}
-				}
-			}
+		// email does not contains spaces
+		if (email.indexOf(' ') !== -1) {
+			return false;
+		} // email contains at symbol
+		if (email.indexOf('@') === -1) {
+			return false;
+		} // email contains exactly one at symbol
+		var pieces = email.split('@');
+		if (pieces.length !== 2) {
+			return false;
 		}
+		var _pieces = _slicedToArray(pieces, 2);
 
-		return false;
+		var username = _pieces[0];
+		var domain = _pieces[1];
+
+		// email does not start with at symbol
+		if (username.length <= 0) {
+			return false;
+		} // domain contains dot
+		if (domain.indexOf('.') === -1) {
+			return false;
+		} // if email passed all above tests its valid
+		return true;
 	}
 
 /***/ },
