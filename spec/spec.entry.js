@@ -1,1 +1,2 @@
 require('./indexSpec');
+require('./emailSpec');

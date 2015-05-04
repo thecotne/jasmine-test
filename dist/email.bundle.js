@@ -44,23 +44,35 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(2);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 		value: true
 	});
-	exports.test = test;
+	exports.validation = validation;
 
-	function test() {
-		return !0;
+	function validation(email) {
+		if (email.indexOf(' ') === -1) {
+			if (email.indexOf('@') > -1) {
+				var pieces = email.split('@');
+				if (pieces.length === 2) {
+					if (pieces[0].length > 0) {
+						if (pieces[1].indexOf('.') > -1) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 /***/ }
