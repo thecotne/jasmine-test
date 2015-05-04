@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(3);
+	module.exports = __webpack_require__(4);
 
 
 /***/ },
@@ -112,14 +112,64 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	__webpack_require__(4);
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.mysql_real_escape_string = mysql_real_escape_string;
+	exports.query = query;
 
-	__webpack_require__(5);
+	function mysql_real_escape_string(str) {
+		return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+			switch (char) {
+				case "\u0000":
+					return "\\0";
+				case "\b":
+					return "\\b";
+				case "\t":
+					return "\\t";
+				case "\u001a":
+					return "\\z";
+				case "\n":
+					return "\\n";
+				case "\r":
+					return "\\r";
+				case "\"":
+				case "'":
+				case "\\":
+				case "%":
+					return "\\" + char;
+			}
+		});
+	}
+
+	function query(strings) {
+		for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+			values[_key - 1] = arguments[_key];
+		}
+
+		var query = strings[0];
+		values.forEach(function (val, i) {
+			query += "\"" + mysql_real_escape_string(val) + "\"" + strings[i + 1];
+		});
+		return query;
+	}
 
 /***/ },
 /* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(5);
+
+	__webpack_require__(6);
+
+	__webpack_require__(7);
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -137,7 +187,7 @@
 	});
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -179,6 +229,23 @@
 
 		it('should not start with at symbole', function () {
 			expect(email.validation('@gmail.com')).toBe(false);
+		});
+	});
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _taggedTemplateLiteral = function (strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); };
+
+	var _query = __webpack_require__(3);
+
+	describe('mysql library', function () {
+		it('should escape strings', function () {
+			var id = '" or 1=1 or 1="';
+			expect(_query.query(_taggedTemplateLiteral(['select * from table where id=', ''], ['select * from table where id=', '']), id)).toEqual('select * from table where id="\\" or 1=1 or 1=\\""');
 		});
 	});
 
