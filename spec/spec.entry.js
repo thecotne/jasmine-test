@@ -1,2 +1,2 @@
-require('./indexSpec');
-require('./emailSpec');
+import './index.spec';
+import './email.spec';
