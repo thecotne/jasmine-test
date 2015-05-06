@@ -115,10 +115,22 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.mysql_real_escape_string = mysql_real_escape_string;
+	/**
+	 * Escapes special characters in a string for use in an SQL statement
+	 * @param  {String} str The string that is to be escaped.
+	 * @return {String} Returns the escaped string
+	 */
+	exports.escape = escape;
+
+	/**
+	 * escape values from query
+	 * @param {Array} strings
+	 * @param {...Array} values
+	 * @return {String}
+	 */
 	exports.query = query;
 
-	function mysql_real_escape_string(str) {
+	function escape(str) {
 		return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
 			switch (char) {
 				case "\u0000":
@@ -147,11 +159,11 @@
 			values[_key - 1] = arguments[_key];
 		}
 
-		var query = strings[0];
-		values.forEach(function (val, i) {
-			query += "\"" + mysql_real_escape_string(val) + "\"" + strings[i + 1];
-		});
-		return query;
+		var _strings = strings.slice(0);
+		for (var i in values) {
+			_strings[i] += "\"" + escape(values[i]) + "\"";
+		}
+		return _strings.join("");
 	}
 
 /***/ },
