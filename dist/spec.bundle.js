@@ -56,9 +56,6 @@
 	Object.defineProperty(exports, '__esModule', {
 		value: true
 	});
-
-	var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } };
-
 	/**
 	 * Email Validation
 	 * @param  {String} email
@@ -66,30 +63,31 @@
 	 */
 	exports.validation = validation;
 
+	function _slicedToArray(arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }
+
 	function validation(email) {
 		// email does not contains spaces
-		if (email.indexOf(' ') !== -1) {
-			return false;
-		} // email contains at symbol
-		if (email.indexOf('@') === -1) {
-			return false;
-		} // email contains exactly one at symbol
+		if (email.indexOf(' ') !== -1) return false;
+
+		// email contains at symbol
+		if (email.indexOf('@') === -1) return false;
+
+		// email contains exactly one at symbol
 		var pieces = email.split('@');
-		if (pieces.length !== 2) {
-			return false;
-		}
+		if (pieces.length !== 2) return false;
+
 		var _pieces = _slicedToArray(pieces, 2);
 
 		var username = _pieces[0];
 		var domain = _pieces[1];
 
 		// email does not start with at symbol
-		if (username.length <= 0) {
-			return false;
-		} // domain contains dot
-		if (domain.indexOf('.') === -1) {
-			return false;
-		} // if email passed all above tests its valid
+		if (username.length <= 0) return false;
+
+		// domain contains dot
+		if (domain.indexOf('.') === -1) return false;
+
+		// if email passed all above tests its valid
 		return true;
 	}
 
@@ -174,11 +172,11 @@
 
 	'use strict';
 
-	var _interopRequireWildcard = function (obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } };
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _import = __webpack_require__(2);
+	var _srcIndexEntryJs = __webpack_require__(2);
 
-	var index = _interopRequireWildcard(_import);
+	var index = _interopRequireWildcard(_srcIndexEntryJs);
 
 	describe('test the test', function () {
 		it('should return true!', function () {
@@ -192,11 +190,11 @@
 
 	'use strict';
 
-	var _interopRequireWildcard = function (obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } };
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _import = __webpack_require__(1);
+	var _srcEmailEntryJs = __webpack_require__(1);
 
-	var email = _interopRequireWildcard(_import);
+	var email = _interopRequireWildcard(_srcEmailEntryJs);
 
 	describe('email validation', function () {
 		it('should have validation function', function () {
@@ -238,14 +236,14 @@
 
 	'use strict';
 
-	var _taggedTemplateLiteral = function (strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); };
+	function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-	var _query = __webpack_require__(3);
+	var _srcMysqlEntryJs = __webpack_require__(3);
 
 	describe('mysql library', function () {
 		it('should escape strings', function () {
 			var id = '" or 1=1 or 1="';
-			expect(_query.query(_taggedTemplateLiteral(['select * from table where id=', ''], ['select * from table where id=', '']), id)).toEqual('select * from table where id="\\" or 1=1 or 1=\\""');
+			expect(_srcMysqlEntryJs.query(_taggedTemplateLiteral(['select * from table where id=', ''], ['select * from table where id=', '']), id)).toEqual('select * from table where id="\\" or 1=1 or 1=\\""');
 		});
 	});
 
