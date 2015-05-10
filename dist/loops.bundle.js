@@ -44,14 +44,13 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(4);
+	module.exports = __webpack_require__(3);
 
 
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -59,55 +58,38 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	/**
-	 * Escapes special characters in a string for use in an SQL statement
-	 * @param  {String} str The string that is to be escaped.
-	 * @return {String} Returns the escaped string
-	 */
-	exports.escape = escape;
+	exports.forOfAndDestructuring = forOfAndDestructuring;
 
-	/**
-	 * escape values from query
-	 * @param {Array} strings
-	 * @param {...Array} values
-	 * @return {String}
-	 */
-	exports.query = query;
+	function _slicedToArray(arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }
 
-	function escape(str) {
-		return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
-			switch (char) {
-				case "\u0000":
-					return "\\0";
-				case "\b":
-					return "\\b";
-				case "\t":
-					return "\\t";
-				case "\u001a":
-					return "\\z";
-				case "\n":
-					return "\\n";
-				case "\r":
-					return "\\r";
-				case "\"":
-				case "'":
-				case "\\":
-				case "%":
-					return "\\" + char;
+	function forOfAndDestructuring(array) {
+		var _iteratorNormalCompletion = true;
+		var _didIteratorError = false;
+		var _iteratorError = undefined;
+
+		try {
+			for (var _iterator = array.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+				var _step$value = _slicedToArray(_step.value, 2);
+
+				var index = _step$value[0];
+				var item = _step$value[1];
+
+				console.log(index, item);
 			}
-		});
-	}
-
-	function query(strings) {
-		for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-			values[_key - 1] = arguments[_key];
+		} catch (err) {
+			_didIteratorError = true;
+			_iteratorError = err;
+		} finally {
+			try {
+				if (!_iteratorNormalCompletion && _iterator["return"]) {
+					_iterator["return"]();
+				}
+			} finally {
+				if (_didIteratorError) {
+					throw _iteratorError;
+				}
+			}
 		}
-
-		var _strings = strings.slice(0);
-		for (var i in values) {
-			_strings[i] += "\"" + escape(values[i]) + "\"";
-		}
-		return _strings.join("");
 	}
 
 /***/ }
