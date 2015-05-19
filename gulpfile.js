@@ -27,9 +27,6 @@ gulp.task('js', function () {
 
 gulp.task('default', ['js']);
 
-// var onChange = require('./onchange');
-
 gulp.task('watch', ['default'], function() {
 	gulp.watch(['src/**/**.js', 'spec/**/**.js'], ['js']);
-	//.on('change', onChange);
 });
