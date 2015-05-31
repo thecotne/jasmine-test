@@ -15,7 +15,7 @@ gulp.task('js', function () {
 					{
 						test: /\.js$/,
 						exclude: /node_modules|bower_components/,
-						loader: 'babel-loader'
+						loader: 'babel-loader?stage=0'
 					}
 				]
 			}
