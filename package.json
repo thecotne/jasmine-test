@@ -16,11 +16,12 @@
     "url": "https://github.com/thecotne/jasmine-test/issues"
   },
   "homepage": "https://github.com/thecotne/jasmine-test",
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^5.2.15",
     "babel-loader": "^5.0.0",
     "gulp": "^3.8.11",
     "gulp-rename": "^1.2.2",
+    "gulp-watch": "^4.2.4",
     "gulp-webpack": "^1.4.0",
     "jasmine": "^2.3.1",
     "vinyl-named": "^1.1.0",
