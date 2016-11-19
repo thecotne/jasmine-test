@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/thecotne/jasmine-test",
   "devDependencies": {
-    "babel-core": "^5.2.15",
-    "babel-loader": "^5.0.0",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
     "gulp": "^3.8.11",
     "gulp-rename": "^1.2.2",
     "gulp-watch": "^4.2.4",
